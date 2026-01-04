@@ -2,25 +2,11 @@ import PropertyList from "../components/PropertyList";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 
-function SearchPage({ favourites }) {
-  //load properties from json
+function SearchPage({ favourites, setFavourites }) {
+  // Load properties from JSON
   const [properties] = useState(propertiesData);
 
-  <h3>Favourites</h3>;
-
-  {
-    favourites.length === 0 && <p>No favourites yet.</p>;
-  }
-
-  <ul>
-    {favourites.map((fav) => (
-      <li key={fav.id}>
-        {fav.shortDescription} – £{fav.price}
-      </li>
-    ))}
-  </ul>;
-
-  //search criteria
+  // Search criteria state
   const [searchCriteria, setSearchCriteria] = useState({
     type: "Any",
     minPrice: "",
@@ -30,7 +16,7 @@ function SearchPage({ favourites }) {
     postcode: "",
   });
 
-  //Handle input changes
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSearchCriteria({
@@ -39,7 +25,12 @@ function SearchPage({ favourites }) {
     });
   };
 
-  //filter logic
+  // Remove from favourites
+  const removeFromFavourites = (id) => {
+    setFavourites(favourites.filter((fav) => fav.id !== id));
+  };
+
+  // Filter logic
   const filteredProperties = properties.filter((property) => {
     if (
       searchCriteria.type !== "Any" &&
@@ -86,6 +77,27 @@ function SearchPage({ favourites }) {
     <div>
       <h2>Search Properties</h2>
 
+      {/* FAVOURITES SECTION */}
+      <h3>Favourites</h3>
+
+      {favourites.length === 0 && <p>No favourites yet.</p>}
+
+      <ul>
+        {favourites.map((fav) => (
+          <li key={fav.id}>
+            {fav.shortDescription} – £{fav.price}{" "}
+            <button onClick={() => removeFromFavourites(fav.id)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+
+      {favourites.length > 0 && (
+        <button onClick={() => setFavourites([])}>Clear All Favourites</button>
+      )}
+
+      <hr />
+
+      {/* SEARCH FORM */}
       <form>
         <label>
           Property Type:
@@ -169,7 +181,7 @@ function SearchPage({ favourites }) {
 
       <hr />
 
-      {/* Results */}
+      {/* SEARCH RESULTS */}
       <h3>Search Results</h3>
       <p>Matching properties: {filteredProperties.length}</p>
 
