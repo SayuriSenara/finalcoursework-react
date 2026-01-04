@@ -130,6 +130,30 @@ a {
   border-color: #0077cc;
 }
 
+/* HOME PAGE */
+
+.home {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.home-intro {
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.home-actions {
+  margin-top: 30px;
+}
+
+.primary-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 768px) {
