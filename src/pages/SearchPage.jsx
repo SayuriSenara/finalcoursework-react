@@ -1,3 +1,4 @@
+import PropertyList from "../components/PropertyList";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 
@@ -158,14 +159,7 @@ function SearchPage() {
       <h3>Search Results</h3>
       <p>Matching properties: {filteredProperties.length}</p>
 
-      <ul>
-        {filteredProperties.map((property) => (
-          <li key={property.id}>
-            {property.type} – £{property.price} – {property.bedrooms} bedrooms –{" "}
-            {property.postcode}
-          </li>
-        ))}
-      </ul>
+      <PropertyList properties={filteredProperties} />
 
       <p>Total properties available: {properties.length}</p>
     </div>
