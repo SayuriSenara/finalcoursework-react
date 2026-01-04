@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 
-function PropertyPage() {
+function PropertyPage({ favourites, setFavourites }) {
   const { id } = useParams();
 
   // Find property by ID
@@ -13,8 +13,17 @@ function PropertyPage() {
     property ? property.images[0] : ""
   );
 
-  // TAB STATE - (should be in right place)
+  // Tab state
   const [activeTab, setActiveTab] = useState("description");
+
+  // STEP 2B: ADD TO FAVOURITES FUNCTION
+  const addToFavourites = () => {
+    const alreadyAdded = favourites.some((fav) => fav.id === property.id);
+
+    if (!alreadyAdded) {
+      setFavourites([...favourites, property]);
+    }
+  };
 
   if (!property) {
     return <p>Property not found.</p>;
@@ -27,13 +36,16 @@ function PropertyPage() {
       </Link>
 
       <h2>{property.shortDescription}</h2>
+
       <p>
         <strong>£{property.price}</strong> · {property.bedrooms} bedrooms ·{" "}
         {property.postcode}
       </p>
 
-      {/* IMAGE GALLERY*/}
+      {/* STEP 2C: ADD TO FAVOURITES BUTTON */}
+      <button onClick={addToFavourites}>Add to Favourites</button>
 
+      {/* IMAGE GALLERY */}
       <img src={activeImage} alt="Property" className="property-main-image" />
 
       <div className="thumbnail-row">
@@ -49,12 +61,9 @@ function PropertyPage() {
       </div>
 
       {/* TABS */}
-
       <div className="tabs">
         <button onClick={() => setActiveTab("description")}>Description</button>
-
         <button onClick={() => setActiveTab("floorplan")}>Floor Plan</button>
-
         <button onClick={() => setActiveTab("map")}>Map</button>
       </div>
 

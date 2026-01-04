@@ -2,9 +2,23 @@ import PropertyList from "../components/PropertyList";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 
-function SearchPage() {
+function SearchPage({ favourites }) {
   //load properties from json
   const [properties] = useState(propertiesData);
+
+  <h3>Favourites</h3>;
+
+  {
+    favourites.length === 0 && <p>No favourites yet.</p>;
+  }
+
+  <ul>
+    {favourites.map((fav) => (
+      <li key={fav.id}>
+        {fav.shortDescription} – £{fav.price}
+      </li>
+    ))}
+  </ul>;
 
   //search criteria
   const [searchCriteria, setSearchCriteria] = useState({
