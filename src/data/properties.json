@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "type": "House",
+    "price": 450000,
+    "bedrooms": 3,
+    "dateAdded": "2024-11-15",
+    "postcode": "NW1",
+    "shortDescription": "Modern 3-bedroom family house",
+    "longDescription": "A modern family house located in a quiet residential area with excellent transport links.",
+    "images": [
+      "/images/house1_1.jpg",
+      "/images/house1_2.jpg",
+      "/images/house1_3.jpg",
+      "/images/house1_4.jpg",
+      "/images/house1_5.jpg",
+      "/images/house1_6.jpg"
+    ],
+    "floorPlan": "/images/house1_floorplan.jpg",
+    "location": {
+      "lat": 51.5413,
+      "lng": -0.142
+    }
+  },
+  {
+    "id": 2,
+    "type": "Flat",
+    "price": 320000,
+    "bedrooms": 2,
+    "dateAdded": "2024-10-10",
+    "postcode": "E1",
+    "shortDescription": "City centre 2-bedroom flat",
+    "longDescription": "A stylish flat located in the heart of the city, ideal for professionals.",
+    "images": [
+      "/images/flat1_1.jpg",
+      "/images/flat1_2.jpg",
+      "/images/flat1_3.jpg",
+      "/images/flat1_4.jpg",
+      "/images/flat1_5.jpg",
+      "/images/flat1_6.jpg"
+    ],
+    "floorPlan": "/images/flat1_floorplan.jpg",
+    "location": {
+      "lat": 51.5155,
+      "lng": -0.0722
+    }
+  },
+  {
+    "id": 3,
+    "type": "House",
+    "price": 600000,
+    "bedrooms": 4,
+    "dateAdded": "2024-09-01",
+    "postcode": "SW1",
+    "shortDescription": "Spacious 4-bedroom detached house",
+    "longDescription": "A large detached property offering generous living space and a private garden.",
+    "images": [
+      "/images/house2_1.jpg",
+      "/images/house2_2.jpg",
+      "/images/house2_3.jpg",
+      "/images/house2_4.jpg",
+      "/images/house2_5.jpg",
+      "/images/house2_6.jpg"
+    ],
+    "floorPlan": "/images/house2_floorplan.jpg",
+    "location": {
+      "lat": 51.498,
+      "lng": -0.1357
+    }
+  },
+  {
+    "id": 4,
+    "type": "Flat",
+    "price": 280000,
+    "bedrooms": 1,
+    "dateAdded": "2024-12-01",
+    "postcode": "SE1",
+    "shortDescription": "Compact 1-bedroom apartment",
+    "longDescription": "A compact and affordable apartment suitable for single occupants.",
+    "images": [
+      "/images/flat2_1.jpg",
+      "/images/flat2_2.jpg",
+      "/images/flat2_3.jpg",
+      "/images/flat2_4.jpg",
+      "/images/flat2_5.jpg",
+      "/images/flat2_6.jpg"
+    ],
+    "floorPlan": "/images/flat2_floorplan.jpg",
+    "location": {
+      "lat": 51.5033,
+      "lng": -0.1195
+    }
+  },
+  {
+    "id": 5,
+    "type": "House",
+    "price": 520000,
+    "bedrooms": 3,
+    "dateAdded": "2024-08-20",
+    "postcode": "BR1",
+    "shortDescription": "3-bedroom suburban house",
+    "longDescription": "A comfortable suburban house close to schools and shopping facilities.",
+    "images": [
+      "/images/house3_1.jpg",
+      "/images/house3_2.jpg",
+      "/images/house3_3.jpg",
+      "/images/house3_4.jpg",
+      "/images/house3_5.jpg",
+      "/images/house3_6.jpg"
+    ],
+    "floorPlan": "/images/house3_floorplan.jpg",
+    "location": {
+      "lat": 51.4036,
+      "lng": 0.0156
+    }
+  },
+  {
+    "id": 6,
+    "type": "Flat",
+    "price": 390000,
+    "bedrooms": 2,
+    "dateAdded": "2024-07-15",
+    "postcode": "N1",
+    "shortDescription": "Modern 2-bedroom flat",
+    "longDescription": "A modern flat with open-plan living and excellent transport connections.",
+    "images": [
+      "/images/flat3_1.jpg",
+      "/images/flat3_2.jpg",
+      "/images/flat3_3.jpg",
+      "/images/flat3_4.jpg",
+      "/images/flat3_5.jpg",
+      "/images/flat3_6.jpg"
+    ],
+    "floorPlan": "/images/flat3_floorplan.jpg",
+    "location": {
+      "lat": 51.5416,
+      "lng": -0.1022
+    }
+  },
+  {
+    "id": 7,
+    "type": "House",
+    "price": 700000,
+    "bedrooms": 5,
+    "dateAdded": "2024-06-05",
+    "postcode": "KT1",
+    "shortDescription": "Luxury 5-bedroom property",
+    "longDescription": "A luxury property offering premium finishes, large garden, and parking space.",
+    "images": [
+      "/images/house4_1.jpg",
+      "/images/house4_2.jpg",
+      "/images/house4_3.jpg",
+      "/images/house4_4.jpg",
+      "/images/house4_5.jpg",
+      "/images/house4_6.jpg"
+    ],
+    "floorPlan": "/images/house4_floorplan.jpg",
+    "location": {
+      "lat": 51.4123,
+      "lng": -0.3007
+    }
+  }
+]
