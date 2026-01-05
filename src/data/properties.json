@@ -9,14 +9,11 @@
     "shortDescription": "Modern 3-bedroom family house",
     "longDescription": "A modern family house located in a quiet residential area with excellent transport links.",
     "images": [
-      "/images/house1_1.jpg",
-      "/images/house1_2.jpg",
-      "/images/house1_3.jpg",
-      "/images/house1_4.jpg",
-      "/images/house1_5.jpg",
-      "/images/house1_6.jpg"
+      "/assets/images/properties/prop02.jpg",
+      "/assets/images/properties/insidehome1.jpg",
+      "/assets/images/properties/housek1.jpg"
     ],
-    "floorPlan": "/images/house1_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan1.jpg",
     "location": {
       "lat": 51.5413,
       "lng": -0.142
@@ -32,14 +29,11 @@
     "shortDescription": "City centre 2-bedroom flat",
     "longDescription": "A stylish flat located in the heart of the city, ideal for professionals.",
     "images": [
-      "/images/flat1_1.jpg",
-      "/images/flat1_2.jpg",
-      "/images/flat1_3.jpg",
-      "/images/flat1_4.jpg",
-      "/images/flat1_5.jpg",
-      "/images/flat1_6.jpg"
+      "/assets/images/properties/prop05.jpg",
+      "/assets/images/properties/flatk2.jpg",
+      "/assets/images/properties/insideroomA1.jpg"
     ],
-    "floorPlan": "/images/flat1_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan2.jpg",
     "location": {
       "lat": 51.5155,
       "lng": -0.0722
@@ -55,14 +49,11 @@
     "shortDescription": "Spacious 4-bedroom detached house",
     "longDescription": "A large detached property offering generous living space and a private garden.",
     "images": [
-      "/images/house2_1.jpg",
-      "/images/house2_2.jpg",
-      "/images/house2_3.jpg",
-      "/images/house2_4.jpg",
-      "/images/house2_5.jpg",
-      "/images/house2_6.jpg"
+      "/assets/images/properties/prop03.jpg",
+      "/assets/images/properties/insidehome02.jpg",
+      "/assets/images/properties/insideroomH1.jpg"
     ],
-    "floorPlan": "/images/house2_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan3.jpg",
     "location": {
       "lat": 51.498,
       "lng": -0.1357
@@ -78,14 +69,11 @@
     "shortDescription": "Compact 1-bedroom apartment",
     "longDescription": "A compact and affordable apartment suitable for single occupants.",
     "images": [
-      "/images/flat2_1.jpg",
-      "/images/flat2_2.jpg",
-      "/images/flat2_3.jpg",
-      "/images/flat2_4.jpg",
-      "/images/flat2_5.jpg",
-      "/images/flat2_6.jpg"
+      "/assets/images/properties/prop04.jpg",
+      "/assets/images/properties/flatk3.jpg",
+      "/assets/images/properties/insideroomA2.jpg"
     ],
-    "floorPlan": "/images/flat2_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan4.jpg",
     "location": {
       "lat": 51.5033,
       "lng": -0.1195
@@ -101,14 +89,11 @@
     "shortDescription": "3-bedroom suburban house",
     "longDescription": "A comfortable suburban house close to schools and shopping facilities.",
     "images": [
-      "/images/house3_1.jpg",
-      "/images/house3_2.jpg",
-      "/images/house3_3.jpg",
-      "/images/house3_4.jpg",
-      "/images/house3_5.jpg",
-      "/images/house3_6.jpg"
+      "/assets/images/properties/house5.jpg",
+      "/assets/images/properties/housek2.jpg",
+      "/assets/images/properties/insidehome03.jpg"
     ],
-    "floorPlan": "/images/house3_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan5.jpg",
     "location": {
       "lat": 51.4036,
       "lng": 0.0156
@@ -124,14 +109,11 @@
     "shortDescription": "Modern 2-bedroom flat",
     "longDescription": "A modern flat with open-plan living and excellent transport connections.",
     "images": [
-      "/images/flat3_1.jpg",
-      "/images/flat3_2.jpg",
-      "/images/flat3_3.jpg",
-      "/images/flat3_4.jpg",
-      "/images/flat3_5.jpg",
-      "/images/flat3_6.jpg"
+      "/assets/images/properties/flat1.jpg",
+      "/assets/images/properties/flatk1.jpg",
+      "/assets/images/properties/insideflat1.jpg"
     ],
-    "floorPlan": "/images/flat3_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan6.jpg",
     "location": {
       "lat": 51.5416,
       "lng": -0.1022
@@ -147,14 +129,11 @@
     "shortDescription": "Luxury 5-bedroom property",
     "longDescription": "A luxury property offering premium finishes, large garden, and parking space.",
     "images": [
-      "/images/house4_1.jpg",
-      "/images/house4_2.jpg",
-      "/images/house4_3.jpg",
-      "/images/house4_4.jpg",
-      "/images/house4_5.jpg",
-      "/images/house4_6.jpg"
+      "/assets/images/properties/house6.jpg",
+      "/assets/images/properties/flatk4.jpg",
+      "/assets/images/properties/insideflat2.jpg"
     ],
-    "floorPlan": "/images/house4_floorplan.jpg",
+    "floorPlan": "/assets/images/properties/plan7.jpg",
     "location": {
       "lat": 51.4123,
       "lng": -0.3007

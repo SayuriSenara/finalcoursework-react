@@ -4,89 +4,139 @@ import propertiesData from "../data/properties.json";
 
 function PropertyPage({ favourites, setFavourites }) {
   const { id } = useParams();
+  const property = propertiesData.find((p) => p.id === Number(id));
 
-  // Find property by ID
-  const property = propertiesData.find((item) => item.id === Number(id));
-
-  // Image gallery state
-  const [activeImage, setActiveImage] = useState(
-    property ? property.images[0] : ""
-  );
-
-  // Tab state
   const [activeTab, setActiveTab] = useState("description");
-
-  // STEP 2B: ADD TO FAVOURITES FUNCTION
-  const addToFavourites = () => {
-    const alreadyAdded = favourites.some((fav) => fav.id === property.id);
-
-    if (!alreadyAdded) {
-      setFavourites([...favourites, property]);
-    }
-  };
+  const [mainImage, setMainImage] = useState(property?.images?.[0]);
 
   if (!property) {
     return <p>Property not found.</p>;
   }
 
+  const isFavourite = favourites.some((fav) => fav.id === property.id);
+
+  const toggleFavourite = () => {
+    if (isFavourite) {
+      setFavourites(favourites.filter((fav) => fav.id !== property.id));
+    } else {
+      setFavourites([...favourites, property]);
+    }
+  };
+
   return (
-    <div>
-      <Link to="/search">
-        <button>← Back to Search</button>
+    <div className="container property-page">
+      <Link to="/search" className="secondary-btn">
+        ← Back to Search
       </Link>
 
       <h2>{property.shortDescription}</h2>
-
-      <p>
-        <strong>£{property.price}</strong> · {property.bedrooms} bedrooms ·{" "}
-        {property.postcode}
+      <p className="property-price">
+        £{property.price} · {property.bedrooms} bedrooms · {property.postcode}
       </p>
 
-      {/* STEP 2C: ADD TO FAVOURITES BUTTON */}
-      <button onClick={addToFavourites}>Add to Favourites</button>
+      <button className="primary-btn" onClick={toggleFavourite}>
+        {isFavourite ? "Remove from Favourites" : "Add to Favourites"}
+      </button>
 
-      {/* IMAGE GALLERY */}
-      <img src={activeImage} alt="Property" className="property-main-image" />
+      {/* MAIN IMAGE */}
+      <div style={{ marginTop: "20px" }}>
+        <img
+          src={mainImage}
+          alt="Property"
+          style={{
+            width: "100%",
+            maxWidth: "800px",
+            height: "420px",
+            objectFit: "cover",
+            borderRadius: "12px",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.15)",
+          }}
+        />
+      </div>
 
-      <div className="thumbnail-row">
+      {/* THUMBNAILS */}
+      <div style={{ display: "flex", gap: "10px", marginTop: "15px" }}>
         {property.images.map((img, index) => (
           <img
             key={index}
             src={img}
             alt="Thumbnail"
-            className="thumbnail"
-            onClick={() => setActiveImage(img)}
+            onClick={() => setMainImage(img)}
+            style={{
+              width: "90px",
+              height: "65px",
+              objectFit: "cover",
+              borderRadius: "6px",
+              cursor: "pointer",
+              border: "2px solid #5a7863",
+            }}
           />
         ))}
       </div>
 
       {/* TABS */}
       <div className="tabs">
-        <button onClick={() => setActiveTab("description")}>Description</button>
-        <button onClick={() => setActiveTab("floorplan")}>Floor Plan</button>
-        <button onClick={() => setActiveTab("map")}>Map</button>
-      </div>
+        <div className="tab-buttons">
+          <button
+            className="secondary-btn"
+            onClick={() => setActiveTab("description")}
+          >
+            Description
+          </button>
+          <button
+            className="secondary-btn"
+            onClick={() => setActiveTab("floorplan")}
+          >
+            Floor Plan
+          </button>
+          <button className="secondary-btn" onClick={() => setActiveTab("map")}>
+            Map
+          </button>
+        </div>
 
-      <div className="tab-content">
-        {activeTab === "description" && <p>{property.longDescription}</p>}
+        <div style={{ marginTop: "15px" }}>
+          {activeTab === "description" && <p>{property.longDescription}</p>}
+          {activeTab === "floorplan" && (
+            <div>
+              <h3>Floor Plan</h3>
+              <img
+                src={property.floorPlan}
+                alt="Floor plan"
+                style={{
+                  width: "100%",
+                  maxWidth: "600px",
+                  borderRadius: "10px",
+                  marginTop: "10px",
+                }}
+              />
+            </div>
+          )}
 
-        {activeTab === "floorplan" && (
-          <img
-            src={property.floorPlan}
-            alt="Floor Plan"
-            className="floorplan-image"
-          />
-        )}
-
-        {activeTab === "map" && (
-          <iframe
-            title="map"
-            width="100%"
-            height="300"
-            loading="lazy"
-            src={`https://www.google.com/maps?q=${property.location.lat},${property.location.lng}&output=embed`}
-          ></iframe>
-        )}
+          {activeTab === "map" && (
+            <div>
+              <h3>Location</h3>
+              <div
+                style={{
+                  width: "100%",
+                  height: "400px",
+                  marginTop: "10px",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                }}
+              >
+                <iframe
+                  title="Property location"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  src={`https://www.google.com/maps?q=${property.location.lat},${property.location.lng}&output=embed`}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

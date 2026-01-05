@@ -2,7 +2,7 @@ import PropertyList from "../components/PropertyList";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 
-function SearchPage({ favourites, setFavourites }) {
+function SearchPage({ favourites = [], setFavourites }) {
   // Load properties from JSON
   const [properties] = useState(propertiesData);
 
@@ -23,11 +23,6 @@ function SearchPage({ favourites, setFavourites }) {
       ...searchCriteria,
       [name]: value,
     });
-  };
-
-  // Remove from favourites
-  const removeFromFavourites = (id) => {
-    setFavourites(favourites.filter((fav) => fav.id !== id));
   };
 
   // Filter logic
@@ -74,120 +69,149 @@ function SearchPage({ favourites, setFavourites }) {
   });
 
   return (
-    <div>
+    <div className="container">
       <h2>Search Properties</h2>
 
-      {/* FAVOURITES SECTION */}
-      <h3>Favourites</h3>
+      {/* ================= FAVOURITES SECTION ================= */}
+      <section className="section">
+        <h3 className="section-title">Favourite Properties</h3>
 
-      {favourites.length === 0 && <p>No favourites yet.</p>}
+        {favourites.length === 0 ? (
+          <div className="favourites-empty">
+            <p>You have no favourite properties yet.</p>
+            <p>Add properties to favourites to see them here.</p>
+          </div>
+        ) : (
+          <div className="property-list">
+            {favourites.map((property) => (
+              <div className="property-card" key={property.id}>
+                <img
+                  src={property.images[0]}
+                  alt={property.shortDescription}
+                  className="property-image"
+                />
 
-      <ul>
-        {favourites.map((fav) => (
-          <li key={fav.id}>
-            {fav.shortDescription} – £{fav.price}{" "}
-            <button onClick={() => removeFromFavourites(fav.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+                <div className="property-content">
+                  <h3>{property.shortDescription}</h3>
+                  <p className="property-price">£{property.price}</p>
+                  <p>
+                    {property.bedrooms} bedrooms · {property.postcode}
+                  </p>
 
-      {favourites.length > 0 && (
-        <button onClick={() => setFavourites([])}>Clear All Favourites</button>
-      )}
+                  <button
+                    className="secondary-btn"
+                    onClick={() =>
+                      setFavourites(
+                        favourites.filter((fav) => fav.id !== property.id)
+                      )
+                    }
+                  >
+                    Remove from Favourites
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
-      <hr />
-
-      {/* SEARCH FORM */}
-      <form>
-        <label>
-          Property Type:
-          <select
-            name="type"
-            value={searchCriteria.type}
-            onChange={handleChange}
+        {favourites.length > 0 && (
+          <button
+            className="primary-btn"
+            style={{ marginTop: "15px" }}
+            onClick={() => setFavourites([])}
           >
-            <option value="Any">Any</option>
-            <option value="House">House</option>
-            <option value="Flat">Flat</option>
-          </select>
-        </label>
+            Clear All Favourites
+          </button>
+        )}
+      </section>
 
-        <br />
-        <br />
+      {/* ================= SEARCH CRITERIA ================= */}
+      <section className="section">
+        <h3 className="section-title">Search Criteria</h3>
 
-        <label>
-          Min Price:
-          <input
-            type="number"
-            name="minPrice"
-            value={searchCriteria.minPrice}
-            onChange={handleChange}
-          />
-        </label>
+        <form>
+          <label>
+            Property Type:
+            <select
+              name="type"
+              value={searchCriteria.type}
+              onChange={handleChange}
+            >
+              <option value="Any">Any</option>
+              <option value="House">House</option>
+              <option value="Flat">Flat</option>
+            </select>
+          </label>
 
-        <br />
-        <br />
+          <label>
+            Min Price:
+            <input
+              type="number"
+              name="minPrice"
+              value={searchCriteria.minPrice}
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Max Price:
-          <input
-            type="number"
-            name="maxPrice"
-            value={searchCriteria.maxPrice}
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Max Price:
+            <input
+              type="number"
+              name="maxPrice"
+              value={searchCriteria.maxPrice}
+              onChange={handleChange}
+            />
+          </label>
 
-        <br />
-        <br />
+          <label>
+            Min Bedrooms:
+            <input
+              type="number"
+              name="minBedrooms"
+              value={searchCriteria.minBedrooms}
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Min Bedrooms:
-          <input
-            type="number"
-            name="minBedrooms"
-            value={searchCriteria.minBedrooms}
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Max Bedrooms:
+            <input
+              type="number"
+              name="maxBedrooms"
+              value={searchCriteria.maxBedrooms}
+              onChange={handleChange}
+            />
+          </label>
 
-        <br />
-        <br />
+          <label>
+            Postcode Area:
+            <input
+              type="text"
+              name="postcode"
+              placeholder="e.g. NW1"
+              value={searchCriteria.postcode}
+              onChange={handleChange}
+            />
+          </label>
+        </form>
+      </section>
 
-        <label>
-          Max Bedrooms:
-          <input
-            type="number"
-            name="maxBedrooms"
-            value={searchCriteria.maxBedrooms}
-            onChange={handleChange}
-          />
-        </label>
+      {/* ================= SEARCH RESULTS ================= */}
+      <section className="section">
+        <h3 className="section-title">Search Results</h3>
 
-        <br />
-        <br />
+        <p>Matching properties: {filteredProperties.length}</p>
 
-        <label>
-          Postcode Area:
-          <input
-            type="text"
-            name="postcode"
-            placeholder="e.g. NW1"
-            value={searchCriteria.postcode}
-            onChange={handleChange}
-          />
-        </label>
-      </form>
+        <PropertyList
+          properties={filteredProperties}
+          favourites={favourites}
+          setFavourites={setFavourites}
+        />
 
-      <hr />
-
-      {/* SEARCH RESULTS */}
-      <h3>Search Results</h3>
-      <p>Matching properties: {filteredProperties.length}</p>
-
-      <PropertyList properties={filteredProperties} />
-
-      <p>Total properties available: {properties.length}</p>
+        <p style={{ marginTop: "10px" }}>
+          Total properties available: {properties.length}
+        </p>
+      </section>
     </div>
   );
 }

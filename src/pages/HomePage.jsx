@@ -2,17 +2,38 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
-    <div className="home">
-      <h1>Estate Agent Property Finder</h1>
+    <div
+      style={{
+        height: "80vh",
+        backgroundImage: "url('/assets/images/properties/home-hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(0,0,0,0.6)",
+          padding: "50px",
+          borderRadius: "12px",
+          textAlign: "center",
+          color: "#ebf4dd",
+          maxWidth: "700px",
+        }}
+      >
+        <h1 style={{ fontSize: "42px", marginBottom: "15px" }}>
+          Property Finder
+        </h1>
 
-      <p className="home-intro">
-        Welcome to the Estate Agent Property Finder application. Use this system
-        to search, view, and save properties that match your preferences.
-      </p>
+        <p style={{ fontSize: "18px", marginBottom: "30px" }}>
+          Find your perfect home from our carefully selected properties across
+          the UK.
+        </p>
 
-      <div className="home-actions">
-        <Link to="/search">
-          <button className="primary-btn">Search Properties</button>
+        <Link to="/search" className="primary-btn">
+          Search Properties
         </Link>
       </div>
     </div>
