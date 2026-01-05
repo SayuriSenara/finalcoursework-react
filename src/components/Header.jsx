@@ -1,25 +1,36 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* Logo / Brand */}
-        <Link to="/" className="navbar-logo">
-          <img
-            src="/assets/images/properties/logo.png"
-            alt="PropertyFinder Logo"
-            className="navbar-logo-img"
-          />
-          <span>PropertyFinder</span>
-        </Link>
+        {/* LOGO */}
+        <div className="logo">
+          <Link to="/">PropertyFinder</Link>
+        </div>
 
-        {/* Navigation links */}
-        <nav className="navbar-links">
-          <Link to="/">Home</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+        {/* HAMBURGER ICON */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </div>
+
+        {/* NAV LINKS */}
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+          <Link to="/search" onClick={() => setMenuOpen(false)}>
+            Search
+          </Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>
+            About
+          </Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
