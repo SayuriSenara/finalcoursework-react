@@ -1,6 +1,8 @@
 import PropertyList from "../components/PropertyList";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function SearchPage({ favourites = [], setFavourites }) {
   // Load properties from JSON
@@ -14,9 +16,10 @@ function SearchPage({ favourites = [], setFavourites }) {
     minBedrooms: "",
     maxBedrooms: "",
     postcode: "",
-    dateFrom: "",
-    dateTo: "",
   });
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -29,6 +32,7 @@ function SearchPage({ favourites = [], setFavourites }) {
 
   // Filter logic
   const filteredProperties = properties.filter((property) => {
+    // Type
     if (
       searchCriteria.type !== "Any" &&
       property.type !== searchCriteria.type
@@ -36,6 +40,7 @@ function SearchPage({ favourites = [], setFavourites }) {
       return false;
     }
 
+    // Price
     if (searchCriteria.minPrice && property.price < searchCriteria.minPrice) {
       return false;
     }
@@ -44,6 +49,7 @@ function SearchPage({ favourites = [], setFavourites }) {
       return false;
     }
 
+    // Bedrooms
     if (
       searchCriteria.minBedrooms &&
       property.bedrooms < searchCriteria.minBedrooms
@@ -58,6 +64,7 @@ function SearchPage({ favourites = [], setFavourites }) {
       return false;
     }
 
+    // Postcode
     if (
       searchCriteria.postcode &&
       !property.postcode
@@ -67,23 +74,15 @@ function SearchPage({ favourites = [], setFavourites }) {
       return false;
     }
 
-    // DATE FILTERING
-    if (searchCriteria.dateFrom) {
-      const propertyDate = new Date(property.dateAdded);
-      const fromDate = new Date(searchCriteria.dateFrom);
+    // 📅 DATE FILTER (NEW)
+    const propertyDate = new Date(property.dateAdded);
 
-      if (propertyDate < fromDate) {
-        return false;
-      }
+    if (startDate && propertyDate < startDate) {
+      return false;
     }
 
-    if (searchCriteria.dateTo) {
-      const propertyDate = new Date(property.dateAdded);
-      const toDate = new Date(searchCriteria.dateTo);
-
-      if (propertyDate > toDate) {
-        return false;
-      }
+    if (endDate && propertyDate > endDate) {
+      return false;
     }
 
     return true;
@@ -215,29 +214,25 @@ function SearchPage({ favourites = [], setFavourites }) {
             />
           </label>
 
-          <br />
-          <br />
-
           <label>
             Date Added From:
-            <input
-              type="date"
-              name="dateFrom"
-              value={searchCriteria.dateFrom}
-              onChange={handleChange}
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Select start date"
+              isClearable
             />
           </label>
 
-          <br />
-          <br />
-
           <label>
             Date Added To:
-            <input
-              type="date"
-              name="dateTo"
-              value={searchCriteria.dateTo}
-              onChange={handleChange}
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Select end date"
+              isClearable
             />
           </label>
         </form>
