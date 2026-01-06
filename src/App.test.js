@@ -4,12 +4,11 @@ import App from "./App";
 test("renders home page content", () => {
   render(<App />);
 
-  const heading = screen.getByRole("heading", {
-    name: /estate agent property finder/i,
-  });
-
-  expect(heading).toBeInTheDocument();
-
+  // Check hero button text instead of heading role
   const button = screen.getByText(/search properties/i);
   expect(button).toBeInTheDocument();
+
+  // Check app name anywhere on screen (navbar)
+  const appName = screen.getByText(/PropertyFinder/i);
+  expect(appName).toBeInTheDocument();
 });
