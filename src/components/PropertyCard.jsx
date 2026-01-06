@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 
-function PropertyCard({ property, favourites, setFavourites }) {
+function PropertyCard({ property, favourites = [], setFavourites }) {
   const isFavourite = favourites.some((fav) => fav.id === property.id);
+
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("property", JSON.stringify(property));
+  };
 
   const toggleFavourite = () => {
     if (isFavourite) {
@@ -13,36 +17,26 @@ function PropertyCard({ property, favourites, setFavourites }) {
 
   return (
     <div
+      draggable
+      onDragStart={handleDragStart}
+      className="property-card"
       style={{
-        background: "#fff",
-        borderRadius: "12px",
-        overflow: "hidden",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+        cursor: "grab",
       }}
     >
       <img
-        src={property.images[0]}
+        src={property.images?.[0]}
         alt={property.shortDescription}
-        style={{
-          width: "100%",
-          height: "200px",
-          objectFit: "cover",
-        }}
+        className="property-image"
       />
 
-      <div style={{ padding: "15px" }}>
+      <div className="property-content">
         <h3>{property.shortDescription}</h3>
 
-        <p style={{ fontWeight: "bold", color: "#5a7863" }}>
-          £{property.price}
-        </p>
+        <p className="property-price">£{property.price}</p>
 
         <p>
           {property.bedrooms} bedrooms · {property.postcode}
-        </p>
-
-        <p style={{ fontSize: "13px", opacity: 0.7 }}>
-          Added on: {property.dateAdded}
         </p>
 
         <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>

@@ -281,6 +281,10 @@ form select {
   margin-bottom: 50px;
 }
 
+.section.drag-over {
+  background-color: rgba(144, 171, 139, 0.15);
+}
+
 /* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
   /* HAMBURGER STYLE */

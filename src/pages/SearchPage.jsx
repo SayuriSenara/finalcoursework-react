@@ -21,6 +21,9 @@ function SearchPage({ favourites = [], setFavourites }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  // 🔹 Drag state (NEW)
+  const [isDragOver, setIsDragOver] = useState(false);
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,9 +33,35 @@ function SearchPage({ favourites = [], setFavourites }) {
     });
   };
 
-  // Filter logic
+  /* ================= DRAG & DROP HANDLERS ================= */
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+
+    const droppedProperty = JSON.parse(e.dataTransfer.getData("property"));
+
+    const alreadyFavourite = favourites.some(
+      (fav) => fav.id === droppedProperty.id
+    );
+
+    if (!alreadyFavourite) {
+      setFavourites([...favourites, droppedProperty]);
+    }
+  };
+
+  /* ================= FILTER LOGIC ================= */
+
   const filteredProperties = properties.filter((property) => {
-    // Type
     if (
       searchCriteria.type !== "Any" &&
       property.type !== searchCriteria.type
@@ -40,50 +69,35 @@ function SearchPage({ favourites = [], setFavourites }) {
       return false;
     }
 
-    // Price
-    if (searchCriteria.minPrice && property.price < searchCriteria.minPrice) {
+    if (searchCriteria.minPrice && property.price < searchCriteria.minPrice)
       return false;
-    }
 
-    if (searchCriteria.maxPrice && property.price > searchCriteria.maxPrice) {
+    if (searchCriteria.maxPrice && property.price > searchCriteria.maxPrice)
       return false;
-    }
 
-    // Bedrooms
     if (
       searchCriteria.minBedrooms &&
       property.bedrooms < searchCriteria.minBedrooms
-    ) {
+    )
       return false;
-    }
 
     if (
       searchCriteria.maxBedrooms &&
       property.bedrooms > searchCriteria.maxBedrooms
-    ) {
+    )
       return false;
-    }
 
-    // Postcode
     if (
       searchCriteria.postcode &&
       !property.postcode
         .toLowerCase()
         .startsWith(searchCriteria.postcode.toLowerCase())
-    ) {
+    )
       return false;
-    }
 
-    // 📅 DATE FILTER (NEW)
     const propertyDate = new Date(property.dateAdded);
-
-    if (startDate && propertyDate < startDate) {
-      return false;
-    }
-
-    if (endDate && propertyDate > endDate) {
-      return false;
-    }
+    if (startDate && propertyDate < startDate) return false;
+    if (endDate && propertyDate > endDate) return false;
 
     return true;
   });
@@ -93,13 +107,22 @@ function SearchPage({ favourites = [], setFavourites }) {
       <h2>Search Properties</h2>
 
       {/* ================= FAVOURITES SECTION ================= */}
-      <section className="section">
+      <section
+        className={`section ${isDragOver ? "drag-over" : ""}`}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        style={{
+          border: "2px dashed #90ab8b",
+          transition: "background-color 0.3s",
+        }}
+      >
         <h3 className="section-title">Favourite Properties</h3>
 
         {favourites.length === 0 ? (
           <div className="favourites-empty">
             <p>You have no favourite properties yet.</p>
-            <p>Add properties to favourites to see them here.</p>
+            <p>Drag properties here or use the Add to Favourites button.</p>
           </div>
         ) : (
           <div className="property-list">
