@@ -41,6 +41,10 @@ function PropertyCard({ property, favourites, setFavourites }) {
           {property.bedrooms} bedrooms · {property.postcode}
         </p>
 
+        <p style={{ fontSize: "13px", opacity: 0.7 }}>
+          Added on: {property.dateAdded}
+        </p>
+
         <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
           <Link to={`/property/${property.id}`} className="secondary-btn">
             View Details

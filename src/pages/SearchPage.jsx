@@ -14,6 +14,8 @@ function SearchPage({ favourites = [], setFavourites }) {
     minBedrooms: "",
     maxBedrooms: "",
     postcode: "",
+    dateFrom: "",
+    dateTo: "",
   });
 
   // Handle input changes
@@ -63,6 +65,25 @@ function SearchPage({ favourites = [], setFavourites }) {
         .startsWith(searchCriteria.postcode.toLowerCase())
     ) {
       return false;
+    }
+
+    // DATE FILTERING
+    if (searchCriteria.dateFrom) {
+      const propertyDate = new Date(property.dateAdded);
+      const fromDate = new Date(searchCriteria.dateFrom);
+
+      if (propertyDate < fromDate) {
+        return false;
+      }
+    }
+
+    if (searchCriteria.dateTo) {
+      const propertyDate = new Date(property.dateAdded);
+      const toDate = new Date(searchCriteria.dateTo);
+
+      if (propertyDate > toDate) {
+        return false;
+      }
     }
 
     return true;
@@ -190,6 +211,32 @@ function SearchPage({ favourites = [], setFavourites }) {
               name="postcode"
               placeholder="e.g. NW1"
               value={searchCriteria.postcode}
+              onChange={handleChange}
+            />
+          </label>
+
+          <br />
+          <br />
+
+          <label>
+            Date Added From:
+            <input
+              type="date"
+              name="dateFrom"
+              value={searchCriteria.dateFrom}
+              onChange={handleChange}
+            />
+          </label>
+
+          <br />
+          <br />
+
+          <label>
+            Date Added To:
+            <input
+              type="date"
+              name="dateTo"
+              value={searchCriteria.dateTo}
               onChange={handleChange}
             />
           </label>

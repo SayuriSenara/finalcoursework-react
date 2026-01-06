@@ -221,10 +221,41 @@ form select {
 }
 
 /* ABOUT PAGE */
+
+.about-page {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.about-page h1 {
+  margin-bottom: 14px;
+}
+
+.about-page h2 {
+  margin-top: 40px;
+  margin-bottom: 14px;
+}
+
+.about-page p {
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+
 .about-cards {
+  margin-top: 30px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+}
+
+.about-list {
+  margin-top: 16px;
+}
+
+.about-list li {
+  margin-bottom: 10px;
 }
 
 .about-card {
@@ -244,6 +275,10 @@ form select {
 .about-card:hover h3,
 .about-card:hover p {
   color: #ffffff;
+}
+
+.about-section {
+  margin-bottom: 50px;
 }
 
 /* MOBILE RESPONSIVE */
